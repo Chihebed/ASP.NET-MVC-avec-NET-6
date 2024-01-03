@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Department>
+
+<h2>List of Departments</h2>
+
+@Html.ActionLink("Add Department", "AddDepartment", "Department", new { }, new { @class = "btn btn-primary" })
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Department Name</th>
+                <th>Department Abbreviation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var department in Model)
+            {
+                <tr>
+                    <td>@department.DepartmentName</td>
+                    <td>@department.DepartmentAbbr</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditDepartment", new { id = department.DepartmentID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Delete", "DeleteDepartment", new { id = department.DepartmentID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No departments found.</p>
+}
+
+

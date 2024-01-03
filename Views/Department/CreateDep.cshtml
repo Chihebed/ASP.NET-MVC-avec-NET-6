@@ -1,0 +1,22 @@
+﻿@model Department
+
+<h2>Create Department</h2>
+
+@using (Html.BeginForm("AddDepartment", "Department", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartmentName)
+        @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DepartmentName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartmentAbbr)
+        @Html.TextBoxFor(model => model.DepartmentAbbr, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DepartmentAbbr)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Department</button>
+}

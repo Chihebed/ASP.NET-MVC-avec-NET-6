@@ -1,0 +1,24 @@
+﻿@model EmployeeCrud.Models.Department
+
+<h2>Edit Department</h2>
+
+@using (Html.BeginForm("EditDepartment", "Department", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.DepartmentID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartmentName)
+        @Html.TextBoxFor(model => model.DepartmentName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DepartmentName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DepartmentAbbr)
+        @Html.TextBoxFor(model => model.DepartmentAbbr, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.DepartmentAbbr)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+}

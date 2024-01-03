@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Employee>
+<h1>Employee List</h1>
+@using (Html.BeginForm())
+{
+    <div class="input-group">
+        @Html.TextBox("SearchByName",null, new{@class="form-control",@placeholder="Fearch by Employee Name...."})
+        <input type="submit" value="Search" class="btn btn-outline-succes">
+        <a asp-action="Create" class=" btn btn-outline-primary">Create</a>
+    </div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("Employee Name","Index",new {sertField="EmployeeName",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+            </th>
+            <th>
+             
+                 @Html.ActionLink("Employee Number","Index",new {sertField="EmployeeNumber",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+            </th>
+
+             <th>
+                @Html.ActionLink("Date Of birth","Index",new {sertField="DOB",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+                
+            </th>
+            <th>
+                @Html.ActionLink("Hiring Date","Index",new {sertField="HiringDate",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+               
+            </th>
+            <th>
+                 @Html.ActionLink(" Gross Salary","Index",new {sertField="GrossSalary",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+     
+            </th>
+            <th>
+                 @Html.ActionLink("Net Salary","Index",new {sertField="NetSalary",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+        
+            </th>
+            <th>
+                 @Html.ActionLink("Department Name","Index",new {sertField="DepartmentName",currentSertField=ViewBag.SertField,sertDirection=ViewBag.SortDirection})
+
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HiringDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GrossSalary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetSalary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit ", "Edit", new { id = item.EmployeeID }, new { @class = "btn btn-info" }) <i class="fas fa-edit"></i>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID }, new { onclick = "return confirm('Are you sure to delete this Employee?')", @class = "btn btn-danger" }) <i class="fas fa-trash"></i>
+                </td>
+
+
+            </tr>
+
+        }
+    </tbody>
+</table>
